@@ -16,29 +16,28 @@ import com.example.hotelbooking.entities.PopularDestination;
 
 import java.util.ArrayList;
 
-public class BestHotelAdapter extends RecyclerView.Adapter<BestHotelAdapter.ViewHolder> {
+public class PopularDestinationAdapter extends RecyclerView.Adapter<PopularDestinationAdapter.ViewHolder> {
     ArrayList<PopularDestination> items;
     Context context;
 
-    public BestHotelAdapter(Context context, ArrayList<PopularDestination> items) {
+    public PopularDestinationAdapter(Context context, ArrayList<PopularDestination> items) {
         this.items = items;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public BestHotelAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_best_hotel_item, parent, false);
-        return new BestHotelAdapter.ViewHolder(view);
+    public PopularDestinationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_popular_destination_item, parent, false);
+        return new PopularDestinationAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BestHotelAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PopularDestinationAdapter.ViewHolder holder, int position) {
         PopularDestination item = items.get(position);
         context = holder.itemView.getContext();
-        Glide.with(context).load(item.getImageUrl()).into(holder.imgHotel);
 
-        holder.txtNameHotel.setText(item.getName());
+        holder.imgHotel.setImageResource(item.getImageUrl());
         holder.txtLocation.setText(item.getLocation());
 
     }
@@ -50,13 +49,11 @@ public class BestHotelAdapter extends RecyclerView.Adapter<BestHotelAdapter.View
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imgHotel;
-        private final TextView txtNameHotel;
         private final TextView txtLocation;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imgHotel = itemView.findViewById(R.id.imgHotel);
-            txtNameHotel = itemView.findViewById(R.id.txtNameHotel);
             txtLocation = itemView.findViewById(R.id.txtLocation);
         }
     }
